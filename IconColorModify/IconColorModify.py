@@ -11,6 +11,7 @@ def modify_image_colors(
     target_fg_color=None,             # replace fg color (RGB, None means not replace fg)
     new_fg_color=None,                # new fg color (RGB, RGBA, or HEX, None means not replace)
     change_all_fg=False,              # if True, change all non-background colors to new_fg_color
+    invert_mask=False,                # if True, invert the color matching mask
     tolerance=40                      # color match tolerance
 ):
     
@@ -47,6 +48,8 @@ def modify_image_colors(
     else:
         # JPG use OpenCV to read, need to convert BGR->RGB
         image = cv2.imread(input_path)
+        if image is None:
+            raise Exception(f"Failed to read image: {input_path}")
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image = np.dstack((image, np.full(image.shape[:2], 255)))
 
@@ -58,6 +61,9 @@ def modify_image_colors(
         bg_diff = np.sqrt(np.sum((image[:, :, :3].astype(float) - target_bg_color) ** 2, axis=2))
         bg_mask = bg_diff < tolerance
         
+        if invert_mask:
+            bg_mask = ~bg_mask  # invert the mask for cases like gradient background
+            
         if new_bg_color is None:  # set transparent
             output_image[bg_mask, 3] = 0
         else:  # replace to new color
@@ -72,6 +78,8 @@ def modify_image_colors(
     elif target_fg_color is not None and new_fg_color is not None:
         fg_diff = np.sqrt(np.sum((image[:, :, :3].astype(float) - target_fg_color) ** 2, axis=2))
         fg_mask = fg_diff < tolerance
+        if invert_mask:
+            fg_mask = ~fg_mask
         output_image[fg_mask, :3] = new_fg_color
 
     # ===[4. save image]===
@@ -109,4 +117,14 @@ if __name__ == "__main__":
         new_fg_color=(0, 255, 0),         # change all non-background
         change_all_fg=True,               # enable change all foreground
         tolerance=40
+    )
+    
+    # 4. handle gradient background by matching dark content
+    modify_image_colors(
+        "IconColorModify/images/4.jpg",
+        "IconColorModify/images/outputs/output4.png",
+        target_bg_color=(0, 0, 0),        # match black content
+        new_bg_color=None,                # make it transparent
+        tolerance=60,                      # higher tolerance for better matching
+        invert_mask=True                  # invert mask to keep black content and remove background
     )

@@ -1,10 +1,4 @@
-以下是你的 `README.md` 文件，它概述了 `modify_image_colors.py` 的功能、用法和示例。  
-
----
-
-### **README.md**
-
-# **Image Color Modifier**
+# **README.md**
 This script modifies the background and foreground colors of an image, supporting transparent backgrounds and selective color replacement.
 
 ## **Features**

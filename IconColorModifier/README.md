@@ -1,4 +1,4 @@
-# **README.md**
+# **Icon Color Modifier**
 This script modifies the background and foreground colors of an image, supporting transparent backgrounds and selective color replacement.
 
 ## **Features**

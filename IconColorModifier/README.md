@@ -1,12 +1,12 @@
-# **Icon Color Modifier**
+# **README**
 This script modifies the background and foreground colors of an image, supporting transparent backgrounds and selective color replacement.
 
 ## **Features**
 - Replace the background color with a new color or make it transparent.
 - Replace specific foreground colors.
 - Convert all non-background colors to a new foreground color.
-- Support for JPG and PNG images.
-- Adjustable color matching tolerance.
+**- Support for JPG and PNG images.
+**- Adjustable color matching tolerance.
 
 ## **Requirements**
 Install the dependencies before running the script:

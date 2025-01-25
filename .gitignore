@@ -134,6 +134,7 @@ celerybeat.pid
 ._*
 
 # Project specific
+/CVMaker/data
 
 # Environments
 .env

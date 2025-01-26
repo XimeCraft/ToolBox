@@ -134,7 +134,7 @@ celerybeat.pid
 ._*
 
 # Project specific
-CVMaker(Pending)/data/
+CVMaker(Pending)/data
 CVMaker(Pending)/output/
 CVMaker(Pending)/temp/ 
 
@@ -181,9 +181,3 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo

@@ -89,42 +89,43 @@ def modify_image_colors(
 
 # example:
 if __name__ == "__main__":
-    # 1. only replace white bg to transparent
+    # 1. remove white background and make it transparent
     modify_image_colors(
-        "IconColorModify/images/5.jpg",
-        "IconColorModify/images/outputs/output5.png",
-        target_bg_color=(0, 0, 0),  # white bg
-        new_bg_color=None                 # None means transparent
-    )
+        "/Users/xiao/Projects/git/ToolBox/IconColorModifier/images/267216.png",
+        "/Users/xiao/Projects/git/ToolBox/IconColorModifier/images/outputs/267216.png",
+        target_bg_color=(255, 255, 255),  # 匹配白色背景
+        new_bg_color=None,                # 设为透明
+        tolerance=40                       # 调整容差值
+     )
 
-    # 2. replace white bg to black and blue fg to black
-    modify_image_colors(
-        "IconColorModify/images/6.jpg",
-        "IconColorModify/images/outputs/output6.png",
-        target_bg_color=(255, 255, 255),
-        new_bg_color=None,
-        target_fg_color=(0, 0, 0),     
-        new_fg_color=(0, 255, 0),
-        tolerance=100
-    )
+    # # 2. replace white bg to black and blue fg to black
+    # modify_image_colors(
+    #     "IconColorModify/images/6.jpg",
+    #     "IconColorModify/images/outputs/output6.png",
+    #     target_bg_color=(255, 255, 255),
+    #     new_bg_color=None,
+    #     target_fg_color=(0, 0, 0),     
+    #     new_fg_color=(0, 255, 0),
+    #     tolerance=100
+    # )
     
-    # 3. change all non-background colors to green
-    modify_image_colors(
-        "IconColorModify/images/7.jpg",
-        "IconColorModify/images/outputs/output7.png",
-        target_bg_color=(255, 255, 255),  # white background
-        new_bg_color=None,                # transparent background
-        new_fg_color=(0, 255, 0),         # change all non-background
-        change_all_fg=True,               # enable change all foreground
-        tolerance=40
-    )
+    # # 3. change all non-background colors to green
+    # modify_image_colors(
+    #     "IconColorModify/images/7.jpg",
+    #     "IconColorModify/images/outputs/output7.png",
+    #     target_bg_color=(255, 255, 255),  # white background
+    #     new_bg_color=None,                # transparent background
+    #     new_fg_color=(0, 255, 0),         # change all non-background
+    #     change_all_fg=True,               # enable change all foreground
+    #     tolerance=40
+    # )
     
-    # 4. handle gradient background by matching dark content
-    modify_image_colors(
-        "IconColorModify/images/4.jpg",
-        "IconColorModify/images/outputs/output4.png",
-        target_bg_color=(0, 0, 0),        # match black content
-        new_bg_color=None,                # make it transparent
-        tolerance=60,                      # higher tolerance for better matching
-        invert_mask=True                  # invert mask to keep black content and remove background
-    )
+    # # 4. handle gradient background by matching dark content
+    # modify_image_colors(
+    #     "IconColorModify/images/4.jpg",
+    #     "IconColorModify/images/outputs/output4.png",
+    #     target_bg_color=(0, 0, 0),        # match black content
+    #     new_bg_color=None,                # make it transparent
+    #     tolerance=60,                      # higher tolerance for better matching
+    #     invert_mask=True                  # invert mask to keep black content and remove background
+    # )
